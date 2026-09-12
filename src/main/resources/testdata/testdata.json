@@ -1,0 +1,45 @@
+{
+  "users": {
+    "validUser": {
+      "name": "Test User",
+      "email": "testuser@gmail.com",
+      "password": "Test@12345"
+    },
+    "newUser": {
+      "name": "Automation User",
+      "email": "automationuser123@gmail.com",
+      "password": "Auto@12345",
+      "firstName": "Automation",
+      "lastName": "User",
+      "company": "Test Company",
+      "address": "123 Automation Street",
+      "country": "India",
+      "state": "Telangana",
+      "city": "Hyderabad",
+      "zipcode": "500001",
+      "mobileNumber": "9876543210"
+    }
+  },
+
+  "search": {
+    "validProduct": "Blue Top",
+    "anotherProduct": "Men Tshirt",
+    "invalidProduct": "NonExistingProduct123"
+  },
+
+  "products": {
+    "productName": "Blue Top"
+  },
+
+  "checkout": {
+    "firstName": "Automation",
+    "lastName": "User",
+    "company": "Test Company",
+    "address": "123 Automation Street",
+    "country": "India",
+    "state": "Telangana",
+    "city": "Hyderabad",
+    "zipcode": "500001",
+    "mobileNumber": "9876543210"
+  }
+}
