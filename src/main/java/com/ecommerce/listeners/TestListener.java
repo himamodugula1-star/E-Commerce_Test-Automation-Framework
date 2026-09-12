@@ -1,16 +1,10 @@
 package com.ecommerce.listeners;
 
 import com.ecommerce.utils.ScreenshotUtils;
-import io.qameta.allure.Allure;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
-
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 
 public class TestListener implements ITestListener {
 
@@ -49,27 +43,10 @@ public class TestListener implements ITestListener {
                         result.getName()
                 );
 
-        try {
-
-            byte[] screenshot =
-                    Files.readAllBytes(
-                            Path.of(screenshotPath)
-                    );
-
-            Allure.addAttachment(
-                    "Failure Screenshot",
-                    "image/png",
-                    new ByteArrayInputStream(screenshot),
-                    "png"
-            );
-
-        } catch (IOException e) {
-
-            logger.error(
-                    "Unable to attach screenshot to Allure",
-                    e
-            );
-        }
+        logger.info(
+                "Failure screenshot captured: {}",
+                screenshotPath
+        );
     }
 
     @Override

@@ -1,8 +1,8 @@
 # E-Commerce Test Automation Framework
 
-A scalable **Hybrid Test Automation Framework** built using **Java, Selenium WebDriver, REST Assured, TestNG, Maven, and Allure Reports** for automating an e-commerce application.
+A scalable **Hybrid Test Automation Framework** built using **Java, Selenium WebDriver, REST Assured, TestNG, and Maven** for automating an e-commerce application.
 
-The framework demonstrates UI automation, REST API automation, Page Object Model, data-driven testing, parallel execution, logging, screenshots, reporting, reusable utilities, and maintainable framework architecture.
+The framework demonstrates UI automation, REST API automation, Page Object Model, data-driven testing, parallel execution, logging, screenshots, reusable utilities, and maintainable framework architecture.
 
 ---
 
@@ -27,7 +27,6 @@ https://automationexercise.com/
 | Log4j2             | Logging                       |
 | JSON               | Test Data Management          |
 | Git & GitHub       | Version Control               |
-| GitHub Actions     | CI/CD                         |
 
 ---
 
@@ -94,6 +93,7 @@ E-Commerce_Test-Automation-Framework
 │   └── test
 │       └── java
 │           └── com.ecommercetest.tests
+│               ├── BaseTest.java
 │               │
 │               ├── api
 │               │   ├── AuthApiTest.java
@@ -311,7 +311,7 @@ url=https://automationexercise.com/
 
 `ConfigReader` is responsible for reading configuration values.
 
-This allows environment-specific configuration to be changed without modifying test code.
+This allows configuration values to be changed without modifying test code.
 
 ---
 
@@ -358,10 +358,10 @@ ScreenshotUtils
         ↓
 TestListener
         ↓
-Allure Report
+Failure Screenshot
 ```
 
-Failure screenshots are attached to the Allure report to simplify debugging.
+Failure screenshots are stored for debugging failed test executions.
 
 ---
 
@@ -372,12 +372,13 @@ The framework uses **Log4j2** for execution logging.
 Logging is implemented for important framework events such as:
 
 * Test start
-* Test completion
+* Test success
+* Test failure
+* Test skip
 * WebDriver initialization
 * Application launch
-* Test failures
+* Screenshot capture
 * WebDriver teardown
-* Screenshot failures
 
 Log configuration is maintained in:
 
@@ -402,21 +403,7 @@ The listener handles events such as:
 * Test Failure
 * Test Skip
 
-On failure, the framework captures a screenshot and attaches it to the Allure report.
-
----
-
-## Reporting
-
-The framework uses **Allure Reports** for test execution reporting.
-
-The report provides visibility into:
-
-* Passed tests
-* Failed tests
-* Skipped tests
-* Failure screenshots
-* Test execution details
+On test failure, the listener captures a screenshot using `ScreenshotUtils` and logs the screenshot path for debugging.
 
 ---
 
@@ -444,16 +431,19 @@ Page Objects / API Classes
 Test Execution
    │
    ├── Pass
+   │
+   ├── Skip
+   │
    └── Fail
           │
           ▼
-   TestListener
+     TestListener
           │
           ▼
-   Screenshot
+  ScreenshotUtils
           │
           ▼
-   Allure Report
+  Failure Screenshot
 ```
 
 ---
@@ -470,18 +460,6 @@ mvn clean test
 
 ```text
 mvn test -DsuiteXmlFile=testng.xml
-```
-
----
-
-## Allure Report
-
-After test execution, Allure results are generated.
-
-Generate and open the report using:
-
-```bash
-allure serve allure-results
 ```
 
 ---
@@ -518,9 +496,8 @@ pom.xml
 * Explicit Waits
 * JavaScript Utilities
 * Random Test Data Generation
-* Screenshot Capture
+* Failure Screenshot Capture
 * TestNG Listeners
-* Allure Reporting
 * Log4j2 Logging
 * Reusable API Layer
 * Reusable Page Objects
@@ -540,7 +517,6 @@ The framework focuses on:
 * Parallel execution
 * Test data management
 * Failure debugging
-* Reporting
 * Clean test architecture
 
 ---
@@ -549,6 +525,6 @@ The framework focuses on:
 
 **QA Automation / SDET**
 
-```
+```text
 Java | Selenium | REST Assured | TestNG | Maven | API Automation
 ```
